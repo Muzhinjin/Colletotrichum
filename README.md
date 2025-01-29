@@ -5,6 +5,8 @@ CAZ enzymes
 library(ggplot2)
 library(extrafont)
 library(reshape2)
+library(dplyr)
+library(tidyr)
 
 # Create the data
 data <- data.frame(
@@ -50,7 +52,10 @@ plot3 <- ggplot(data_long, aes(x = Isolates, y = Value, fill = Compartment)) +
   labs(x = "Isolates", y = "CAZymes number", fill = "CAZyme type",
        title = "A")
 plot3
+ggsave("Figure4Afinal.png", plot = plot3, width = 10, height = 6, dpi = 360)
 
+
+#Heatmap
 library(pheatmap)
 library(extrafont)  # Font support
 library(grid)       # For grid text adjustments
@@ -171,6 +176,9 @@ pheatmap(
   number_color = "black",
   fontsize_row = 12,
   fontsize_col = 12,
+  number_format = "%.0f",
+  cellheight = 9,
+  cellwidth = 22,
   angle_col = "45",
   fontfamily = "Times New Roman"
 )
